@@ -1,15 +1,25 @@
-import { useState } from 'react'
-import './App.css'
-import Card from './components/Card'
+import React from 'react'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import LandingPage from './components/LandingPage'
 import Home from './components/Home'
+import './App.css'
+import AddDoctor from './components/AddDoctor'
+import ViewDetails from './components/ViewDetails'
 
 function App() {
- 
-
   return (
-    <>
-      <Home/>
-    </>
+    <div>
+        <BrowserRouter>
+          <Routes>
+              <Route path='/' element={<LandingPage/>}>
+                  {/* outlet */}
+                  <Route index element={<Home/>}/>
+                  <Route path='addDoctor' element={<AddDoctor/>}/>
+                  <Route path='viewDetails/:id' element={<ViewDetails/>}/>
+              </Route>
+          </Routes>
+        </BrowserRouter>
+    </div>
   )
 }
 

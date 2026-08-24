@@ -12,7 +12,7 @@ function Home() {
 
     let cards=doctors.map(function(item,ind){
         return(
-            <Card name={item.name} specialization={item.specialization} gender={item.gender} key={ind}/>
+            <Card name={item.name} specialization={item.specialization} gender={item.gender} id={item.id} key={ind}/>
         )
     });
 
@@ -21,7 +21,6 @@ function Home() {
     },[])
   return (
     <div>
-        <h1>Home</h1>
         <div className='container'>
             {cards}
         </div>
