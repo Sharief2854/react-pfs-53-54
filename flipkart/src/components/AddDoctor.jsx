@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 function AddDoctor() {
     const[name,setname]=useState("");
@@ -7,9 +8,13 @@ function AddDoctor() {
     const[gender,setGender]=useState("");
     const[specialization,setSpecialization]=useState("");
     const[salary,setSalary]=useState(0);
+    const[loading,setLoading]=useState(false);
+
+    let navigate=useNavigate();
 
     async function add(event){
       event.preventDefault();
+      setLoading(true);
       // validations
       if(name=="" || number=="" || gender=="" || specialization=="" || salary==""){
         alert("please fill all details");
@@ -31,11 +36,20 @@ function AddDoctor() {
         salary:salary
       }
 
-      let api="https://doc-back-v2nv.onrender.com/doctors"
-      let res=await axios.post(api,doctorObj);
-      console.log(res);
+      try{
+        let api="https://doc-back-v2nv.onrender.com/doctors"
+        let res=await axios.post(api,doctorObj);
+        console.log(res);
+        alert("added successfully....");
+        navigate("/");
 
-      // console.log(doctorObj);
+      }
+      catch(err){
+          alert("something went wrong try again!!")
+      }
+      finally{
+        setLoading(false);
+      }
     }
 
 
@@ -67,7 +81,9 @@ function AddDoctor() {
           Salary:
           <input type="number"  onChange={(event)=>setSalary(event.target.value)}/> <br />
 
-          <input type="submit" value="add Doctor"/>
+          <button type='submit'>
+              {loading==true?"Loading.....":"Add doctor"}
+          </button>
         </form>
     </div>
   )

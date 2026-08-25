@@ -5,6 +5,7 @@ import Home from './components/Home'
 import './App.css'
 import AddDoctor from './components/AddDoctor'
 import ViewDetails from './components/ViewDetails'
+import EditDoctor from './components/EditDoctor'
 
 function App() {
   return (
@@ -16,6 +17,8 @@ function App() {
                   <Route index element={<Home/>}/>
                   <Route path='addDoctor' element={<AddDoctor/>}/>
                   <Route path='viewDetails/:id' element={<ViewDetails/>}/>
+                  <Route path='editDoctor/:id' element={<EditDoctor/>}/>
+
               </Route>
           </Routes>
         </BrowserRouter>
